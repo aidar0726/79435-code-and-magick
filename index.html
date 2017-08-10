@@ -175,12 +175,13 @@
 
 <script>
   var RATIOPROPORTION = 1.337;
-  var fireballSize = 20;
-  var wizardWidth = 70;
-  var wizardSpeed = 3;
+  var FIREBALLSIZE = 20;
+  var WIZARDWIDTH = 70;
+  var WIZARDSPEED = 3;
+
 
   var getWizardHeight = function(wizardWidth) {
-    return RATIOPROPORTION * wizardWidth;
+    return RATIOPROPORTION * WIZARDWIDTH;
   }
 
   var getFireballSpeed = function(left) {
@@ -188,11 +189,11 @@
   }
 
   var getWizardX = function(width) {
-    return width/2;
+    return width / 2;
   }
 
-  var getWizardY = function(height) {
-    return (height*2)/3;
+  var getWizardY =  function(height) {
+    return (height * 2) / 3;
   }
 
 </script>
