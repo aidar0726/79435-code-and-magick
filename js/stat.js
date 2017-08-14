@@ -32,16 +32,18 @@ window.renderStatistics = function (ctx, names, times) {
     var currentName = names[i];
     var currentTime = times[i];
     var personalHeight = currentTime * step;
+    var DIFFERENCEHEIGHT = HISTOGRAMHEIGHT - personalHeight;
+    var YOURINITIAL = 'Вы';
     ctx.fillStyle = 'black';
     ctx.fillText(currentName, INITIALX + 90 * i, 260);
-    ctx.fillText(currentTime.toFixed(0), INITIALX + 90 * i, 80 + (HISTOGRAMHEIGHT - personalHeight));
+    ctx.fillText(currentTime.toFixed(0), INITIALX + 90 * i, 80 + DIFFERENCEHEIGHT);
 
     ctx.fillStyle = 'rgba(29, 23, ' + colorSaturation + ', 1)';
 
-    if (currentName === 'Вы') {
+    if (currentName === YOURINITIAL) {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     }
-    ctx.fillRect(INITIALX + 90 * i, 90 + (HISTOGRAMHEIGHT - personalHeight), WIDTHGISTOGRAMM, personalHeight);
+    ctx.fillRect(INITIALX + 90 * i, 90 + DIFFERENCEHEIGHT, WIDTHGISTOGRAMM, personalHeight);
   }
 
 };
