@@ -1,7 +1,6 @@
 'use strict';
 
 window.renderStatistics = function (ctx, names, times) {
-  ctx.fillText('Привет канвас!', 100, 100);
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.fillRect(110, 20, 420, 270);
 
@@ -23,23 +22,26 @@ window.renderStatistics = function (ctx, names, times) {
     }
   }
 
-  var histogramHeight = 150;
-  var initialX = 150;
-  var widthGistogramm = 40;
-  var step = histogramHeight / max;
+  var HISTOGRAMHEIGHT = 150;
+  var INITIALX = 150;
+  var WIDTHGISTOGRAMM = 40;
+  var step = HISTOGRAMHEIGHT / max;
 
   for (var i = 0; i < times.length; i++) {
     var colorSaturation = Math.floor(Math.random() * (207 - 50 + 1)) + 50;
+    var currentName = names[i];
+    var currentTime = times[i];
+    var personalHeight = currentTime * step;
     ctx.fillStyle = 'black';
-    ctx.fillText(names[i], initialX + 90 * i, 260);
-    ctx.fillText(times[i].toFixed(0), initialX + 90 * i, 80 + (histogramHeight - times[i] * step));
+    ctx.fillText(currentName, INITIALX + 90 * i, 260);
+    ctx.fillText(currentTime.toFixed(0), INITIALX + 90 * i, 80 + (HISTOGRAMHEIGHT - personalHeight));
 
     ctx.fillStyle = 'rgba(29, 23, ' + colorSaturation + ', 1)';
 
-    if (names[i] === 'Вы') {
+    if (currentName === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     }
-    ctx.fillRect(initialX + 90 * i, 90 + (histogramHeight - times[i] * step), widthGistogramm, times[i] * step);
+    ctx.fillRect(INITIALX + 90 * i, 90 + (HISTOGRAMHEIGHT - personalHeight), WIDTHGISTOGRAMM, personalHeight);
   }
 
 };
