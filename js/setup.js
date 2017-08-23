@@ -2,6 +2,7 @@
 var COUNT_MAG = 4;
 
 // функция получения случайного числа из массива
+
 var randomResult = function (arrayLength) {
   var reusultIndexArray = ((arrayLength - 1) * Math.random()).toFixed(0);
   return reusultIndexArray;
