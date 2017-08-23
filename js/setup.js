@@ -1,24 +1,28 @@
 'use strict';
+var COUNT_MAG = 4;
+
+// функция получения случайного числа из массива
+var randomResult = function (arrayLength) {
+  var reusultIndexArray = ((arrayLength - 1) * Math.random()).toFixed(0);
+  return reusultIndexArray;
+};
+
+var arrayNames = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
+var arraySurnames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
+var arrayCoatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var arrayEyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
 
 // функция создания массива особенностей магов
 var renderArrayWizard = function (countWizard) {
-  var arrayNames = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-  var arraySurnames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-  var arrayCoatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-  var arrayEyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
 
   var resultArrayWizard = [];
 
-  var randomResult = function (arrayLength) {
-    var reusultIndexArray = ((arrayLength - 1) * Math.random()).toFixed(0);
-    return reusultIndexArray;
-  };
-
   for (var i = 0; i < countWizard; i++) {
-    var obj = {};
-    obj.name = arrayNames[randomResult(arrayNames.length)] + ' ' + arraySurnames[randomResult(arraySurnames.length)];
-    obj.eyesColor = arrayEyesColor[randomResult(arrayEyesColor.length)];
-    obj.coatColor = arrayCoatColor[randomResult(arrayCoatColor.length)];
+    var obj = {
+      name: arrayNames[randomResult(arrayNames.length)] + ' ' + arraySurnames[randomResult(arraySurnames.length)],
+      eyesColor: arrayEyesColor[randomResult(arrayEyesColor.length)],
+      coatColor: arrayCoatColor[randomResult(arrayCoatColor.length)]
+    };
 
     resultArrayWizard[i] = obj;
   }
@@ -26,7 +30,7 @@ var renderArrayWizard = function (countWizard) {
   return resultArrayWizard;
 };
 
-var arrayWizard = renderArrayWizard(3);
+var arrayWizard = renderArrayWizard(COUNT_MAG);
 
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
@@ -48,9 +52,10 @@ var renderWizard = function (wizard) {
 // функция для вставки шаблонов в исходный тэг
 var insertWizardsContainer = function (wizards, addWizard) {
   var fragment = document.createDocumentFragment();
-  for (var c = 0; c < wizards.length; c++) {
-    fragment.appendChild(addWizard(wizards[c]));
-  }
+  wizards.forEach(function (element) {
+    fragment.appendChild(addWizard(element));
+  });
+
   similarListElement.appendChild(fragment);
 };
 
